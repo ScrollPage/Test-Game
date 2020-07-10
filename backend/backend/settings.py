@@ -107,6 +107,8 @@ AUTH_PASSWORD_VALIDATORS = [
 REACT_DOMEN = 'http://localhost:3000'
 DJANGO_DOMEN = 'http://localhost:8000'
 
+AUTH_USER_MODEL = 'account.Account'
+
 # Internationalization
 # https://docs.djangoproject.com/en/2.1/topics/i18n/
 
