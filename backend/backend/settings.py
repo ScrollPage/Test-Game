@@ -37,6 +37,11 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'account',
+    'tictactoe',
+    'rest_framework',
+    'rest_framework.authtoken',
+    'corsheaders',
 ]
 
 MIDDLEWARE = [
@@ -99,6 +104,8 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+REACT_DOMEN = 'http://localhost:3000'
+DJANGO_DOMEN = 'http://localhost:8000'
 
 # Internationalization
 # https://docs.djangoproject.com/en/2.1/topics/i18n/
