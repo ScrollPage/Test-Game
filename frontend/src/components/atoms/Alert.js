@@ -33,6 +33,7 @@ export const Alert = () => {
             exit={{opacity: 0}}
             transition={{duration: 1}}
         >
+            asdaskdjaskdljakljsdlkasd
             <Alert 
                 type={alert.type || 'info'} 
                 message={alert.text}
