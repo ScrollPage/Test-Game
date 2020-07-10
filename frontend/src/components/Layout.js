@@ -5,6 +5,7 @@ import { createGlobalStyle } from 'styled-components';
 import { normalize } from 'styled-normalize';
 
 import { Header } from './Header';
+import { MyAlert } from './atoms/MyAlert';
 
 const GlobalStyle = createGlobalStyle`
     ${normalize}
@@ -34,6 +35,7 @@ export const Layout = ({ children }) => {
         <>
             <GlobalStyle />
             <Header />
+            <MyAlert />
             <main>{children}</main>
         </>
     );

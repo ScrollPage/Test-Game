@@ -6,21 +6,21 @@ import styled from 'styled-components';
 
 const StyledAlert = styled(motion.div)`
     position: fixed;
-    bottom: 0px;
-    left: 5px;
+    bottom: 1rem;
+    left: 1rem;
     z-index: 100;
     display: flex;
     justify-content: center;
 `;
 
-export const Alert = () => {
+export const MyAlert = () => {
 
     const { alert, hide } = useContext(AlertContext);
 
     useEffect(() => {
         setTimeout(() => {
             hide()
-        }, 2000);
+        }, 3000);
         //eslint-disable-next-line
     }, [alert]);
 
@@ -33,7 +33,6 @@ export const Alert = () => {
             exit={{opacity: 0}}
             transition={{duration: 1}}
         >
-            asdaskdjaskdljakljsdlkasd
             <Alert 
                 type={alert.type || 'info'} 
                 message={alert.text}

@@ -1,7 +1,11 @@
-import { } from '../types'
+import { 
+    SET_LOADING,
+    SEARCH_SUCCESS
+} from '../types'
 
 const handlers = {
-    // [SET_FLAG]: (state) => ({ ...state, flag: !state.flag }),
+    [SET_LOADING]: (state) => ({ ...state, loading: true }),
+    [SEARCH_SUCCESS]: (state, {userName}) => ({ ...state, loading: false, userName: userName, isStart: true }),
     DEFAULT: state => state
 }
 

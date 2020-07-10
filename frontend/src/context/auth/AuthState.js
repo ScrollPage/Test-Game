@@ -6,7 +6,10 @@ import qs from 'qs';
 import { AuthContext } from './AuthContext'
 import { AuthReducer } from './AuthReducer'
 import { AlertContext } from '../alert/AlertContext'
-import { AUTH_SUCCESS, AUTH_LOGOUT, FETCH_ACCOUNT_SUCCESS, SET_LOADING } from '../types'
+import { 
+    AUTH_SUCCESS, 
+    AUTH_LOGOUT
+} from '../types'
 import {localhost} from '../../config'
 
 export const AuthState = ({ children }) => {
@@ -15,33 +18,25 @@ export const AuthState = ({ children }) => {
 
     const initialState = {
         token: store.get('token') === undefined ? null : store.get('token'),
-        email: null,
-        firstName: null,
-        lastName: null,
-        number: null,
-        loading: false
+        userName: store.get('userName') === undefined ? null : store.get('userName')
     }
 
     const [state, dispatch] = useReducer(AuthReducer, initialState)
 
     const authLogin = async (userName, password) => {
-        await axios.post(`${localhost}/account/api/login`, {
+        const data = {
             username: userName, password
-        })
+        };
+        await axios.post(`${localhost}/account/api/login`, qs.stringify(data))
             .then((response) => {
-                const expirationDate = new Date(new Date().getTime() + 3600 * 1000 * 24)
                 store.set('token', response.data.token)
-                store.set('expirationDate', expirationDate)
-                store.set('email', email)
-                store.remove('count')
-                store.remove('price')
-                store.remove('basket')
+                store.set('userName', userName)
 
                 authSuccess(response.data.token)
                 // fetchAccount()
                 
                 show('Вы успешно вошли!', 'success')
-                console.log(response.data)
+                // console.log(response.data)
             })
             .catch((error) => {
                 show('Неверный логин или пароль!', 'warning')
@@ -50,9 +45,10 @@ export const AuthState = ({ children }) => {
     }
 
     const authRegister = async (email, firstName, userName, password) => {
-        await axios.post(`${localhost}/account/api/register`, {
+        const data = {
             email: email, first_name: firstName, username: userName, password: password
-        })
+        };
+        await axios.post(`${localhost}/account/api/register`, qs.stringify(data))
             .then((response) => {
                 show('На ваш E-mail пришло письмо с подтверждением!', 'success')
             })
@@ -98,59 +94,59 @@ export const AuthState = ({ children }) => {
         })
     }
 
-    const fetchAccount = async () => {
-        try {
-            const response = await axios.get(`${localhost}/account/api/${store.get('email')}`)
-            fetchAccountSuccess(response.data[0])
-            store.set('isAdmin', response.data[0].is_superuser)
-        } catch (e) {
-            console.log(e)
-        }
-    }
+    // const fetchAccount = async () => {
+    //     try {
+    //         const response = await axios.get(`${localhost}/account/api/${store.get('email')}`)
+    //         fetchAccountSuccess(response.data[0])
+    //         store.set('isAdmin', response.data[0].is_superuser)
+    //     } catch (e) {
+    //         console.log(e)
+    //     }
+    // }
 
-    const fetchAccountSuccess = (info) => dispatch({ type: FETCH_ACCOUNT_SUCCESS, payload: info })
+    // const fetchAccountSuccess = (info) => dispatch({ type: FETCH_ACCOUNT_SUCCESS, payload: info })
 
-    const changeAccount = async (email, firstName, lastName, number) => {
-        setLoading()
-        const data = { email, first_name: firstName, last_name: lastName, phone_number: number }
-        const options = {
-            method: 'PUT',
-            url: `${localhost}/account/data_change/${store.get('email')}`,
-            data: qs.stringify(data)
-        }
-        await axios(options)
-            .then((response) => {
-                store.set('email', email)
-                fetchAccountSuccess(data)
-                show('Вы успешно сменили данные!', 'success')
-            })
-            .catch((error) => {
-                console.log(error);
-                show('Что-то пошло не так!', 'warning')
-            });
-    }
+    // const changeAccount = async (email, firstName, lastName, number) => {
+    //     setLoading()
+    //     const data = { email, first_name: firstName, last_name: lastName, phone_number: number }
+    //     const options = {
+    //         method: 'PUT',
+    //         url: `${localhost}/account/data_change/${store.get('email')}`,
+    //         data: qs.stringify(data)
+    //     }
+    //     await axios(options)
+    //         .then((response) => {
+    //             store.set('email', email)
+    //             fetchAccountSuccess(data)
+    //             show('Вы успешно сменили данные!', 'success')
+    //         })
+    //         .catch((error) => {
+    //             console.log(error);
+    //             show('Что-то пошло не так!', 'warning')
+    //         });
+    // }
 
-    const changePassword = async (password) => {
-        const data = { email: store.get('email'), password }
-        const options = {
-            method: 'POST',
-            url: `${localhost}/acc/password_change`,
-            data: qs.stringify(data)
-        }
-        await axios(options)
-            .then((response) => {
-                console.log(response.data)
-                show('Вы успешно сменили пароль!', 'success')
-            })
-            .catch((error) => {
-                console.log(error);
-                show('Что-то пошло не так!', 'warning')
-            });
-    }
+    // const changePassword = async (password) => {
+    //     const data = { email: store.get('email'), password }
+    //     const options = {
+    //         method: 'POST',
+    //         url: `${localhost}/acc/password_change`,
+    //         data: qs.stringify(data)
+    //     }
+    //     await axios(options)
+    //         .then((response) => {
+    //             console.log(response.data)
+    //             show('Вы успешно сменили пароль!', 'success')
+    //         })
+    //         .catch((error) => {
+    //             console.log(error);
+    //             show('Что-то пошло не так!', 'warning')
+    //         });
+    // }
 
-    const setLoading = () => dispatch({type: SET_LOADING})
+    // const setLoading = () => dispatch({type: SET_LOADING})
 
-    const { token, firstName, lastName, number, email, loading } = state
+    const { token, firstName, lastName, number, email } = state
 
     return (
         <AuthContext.Provider value={{
@@ -161,10 +157,10 @@ export const AuthState = ({ children }) => {
             authSuccess,
             autoLogout,
             logout,
-            fetchAccount,
-            changeAccount,
-            changePassword,
-            token, firstName, lastName, number, email, loading
+            // fetchAccount,
+            // changeAccount,
+            // changePassword,
+            token, firstName, lastName, number, email
         }}>
             {children}
         </AuthContext.Provider>

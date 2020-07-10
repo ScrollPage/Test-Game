@@ -10,6 +10,7 @@ const StyledHeader = styled.div`
     padding: 20px 0px;
     .nav-link {
         margin-left: 20px;
+        
         &:first-child {
             margin-left: 0px;
         }
