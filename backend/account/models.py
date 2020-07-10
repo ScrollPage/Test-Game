@@ -83,12 +83,12 @@ def create_auth_token(sender, instance = None, created = False, **kwargs):
         if instance.is_superuser is False:
             m = MyToken.objects.create(user = instance)
             m.token = generate_token(instance.first_name)
-            send_mail(
-                "Подтверждение регистрации",
-                f"Перейдите по ссылке, чтобы завершить регистрацию: {settings.DJANGO_DOMEN}/account/authorization_confirm/{m.token}",
-                settings.EMAIL_HOST_USER, 
-                [instance.email,], 
-                fail_silently=False
-            )
+            #send_mail(
+            #    "Подтверждение регистрации",
+            #    f"Перейдите по ссылке, чтобы завершить регистрацию: {settings.DJANGO_DOMEN}/account/authorization_confirm/{m.token}",
+            #    settings.EMAIL_HOST_USER, 
+            #    [instance.email,], 
+            #    fail_silently=False
+            #)
             m.save()
         Token.objects.create(user = instance)
