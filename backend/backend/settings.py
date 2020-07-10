@@ -39,6 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'account',
     'tictactoe',
+    'search',
+    'gamification',
     'rest_framework',
     'rest_framework.authtoken',
     'corsheaders',

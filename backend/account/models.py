@@ -7,6 +7,7 @@ from rest_framework.authtoken.models import Token
 from django.contrib.auth.models import PermissionsMixin
 from django.core.mail import send_mail
 from account.help_funcs import generate_token
+from gamification.models import GameItem
 
 class MyAccountManager(BaseUserManager):
 
@@ -53,6 +54,7 @@ class Account(AbstractBaseUser, PermissionsMixin):
     is_superuser = models.BooleanField(default = False)
     avatar = models.ImageField(upload_to='user_avatars/%Y/%m/%d', blank=True)
     is_active = models.BooleanField(default = True)
+    games = models.OneToOneField(GameItem, on_delete = models.CASCADE, null = True)
 
     USERNAME_FIELD = 'username'
     REQUIRED_FIELDS = ['email','first_name',]
