@@ -41,6 +41,9 @@ const validationSchema = Yup.object().shape({
     firstName: Yup.string()
         .min(3, 'Слишком короткое имя')
         .required('Введите имя'),
+    userName: Yup.string()
+        .min(3, 'Слишком короткий логин')
+        .required('Введите имя'),
     password: Yup.string()
         .matches(
             '^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.{8,})',
@@ -75,7 +78,7 @@ export const Reg = () => {
         },
         validationSchema,
         onSubmit: (values, { setSubmitting, resetForm }) => {
-            authRegister(values.email, values.firstName, values.lastName, values.number, values.password)
+            authRegister(values.email, values.firstName, values.userName, values.password)
             setSubmitting(true)
             setTimeout(() => {
                 resetForm()
@@ -125,6 +128,22 @@ export const Reg = () => {
                                 placeholder="Имя"
                                 prefix={<UserOutlined />}
                                 value={values.firstName}
+                                onChange={handleChange}
+                                onBlur={handleBlur}
+                            />
+                        </Form.Item>
+                        <Form.Item
+                            name="userName"
+                            hasFeedback
+                            help={errorMessege(touched.userName, errors.userName)}
+                            validateStatus={!touched.userName ? null : errors.userName ? "error" : "success"}
+                        >
+                            <Input
+                                id="reg__userName"
+                                name="userName"
+                                placeholder="Логин"
+                                prefix={<UserOutlined />}
+                                value={values.userName}
                                 onChange={handleChange}
                                 onBlur={handleBlur}
                             />

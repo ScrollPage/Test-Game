@@ -49,9 +49,9 @@ export const AuthState = ({ children }) => {
             });
     }
 
-    const authRegister = async (email, firstName, lastName, number, password) => {
+    const authRegister = async (email, firstName, userName, password) => {
         await axios.post(`${localhost}/account/api/register`, {
-            email: email, first_name: firstName, last_name: lastName, phone_number: number, password: password
+            email: email, first_name: firstName, username: userName, password: password
         })
             .then((response) => {
                 show('На ваш E-mail пришло письмо с подтверждением!', 'success')
