@@ -107,6 +107,8 @@ AUTH_PASSWORD_VALIDATORS = [
 REACT_DOMEN = 'http://localhost:3000'
 DJANGO_DOMEN = 'http://localhost:8000'
 
+AUTH_USER_MODEL = 'account.Account'
+
 # Internationalization
 # https://docs.djangoproject.com/en/2.1/topics/i18n/
 
@@ -125,3 +127,10 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.1/howto/static-files/
 
 STATIC_URL = '/static/'
+
+EMAIL_HOST = 'smtp.gmail.com' 
+EMAIL_HOST_USER = 'reqww00@gmail.com'
+EMAIL_PORT = 587
+EMAIL_USE_TSL = True
+EMAIL_HOST_PASSWORD = 'CFHFYXF228hec:'
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
