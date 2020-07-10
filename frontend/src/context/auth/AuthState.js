@@ -24,9 +24,9 @@ export const AuthState = ({ children }) => {
 
     const [state, dispatch] = useReducer(AuthReducer, initialState)
 
-    const authLogin = async (email, password) => {
+    const authLogin = async (username, password) => {
         await axios.post(`${localhost}/account/api/login`, {
-            username: email, password
+            username, password
         })
             .then((response) => {
                 const expirationDate = new Date(new Date().getTime() + 3600 * 1000 * 24)
@@ -39,7 +39,7 @@ export const AuthState = ({ children }) => {
 
                 authSuccess(response.data.token)
                 fetchAccount()
-
+                
                 show('Вы успешно вошли!', 'success')
                 console.log(response.data)
             })

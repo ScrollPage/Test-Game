@@ -35,7 +35,7 @@ const StyledLog = styled.div`
 `;
 
 const validationSchema = Yup.object().shape({
-    email: Yup.string()
+    userName: Yup.string()
         // .email('Некорректный E-mail')
         .required('Введите логин'),
     password: Yup.string()
@@ -62,7 +62,7 @@ export const Log = () => {
 
     const formik = useFormik({
         initialValues: {
-            username: '',
+            userName: '',
             password: '',
         },
         validationSchema,
@@ -89,18 +89,18 @@ export const Log = () => {
                     </div>
                     <Form onFinish={handleSubmit}>
                         <Form.Item
-                            name="email"
+                            name="userName"
                             hasFeedback
-                            help={errorMessege(touched.email, errors.email)}
-                            validateStatus={!touched.email ? null : errors.email ? "error" : "success"}
+                            help={errorMessege(touched.userName, errors.userName)}
+                            validateStatus={!touched.userName ? null : errors.userName ? "error" : "success"}
                         >
                             <Input
-                                id="log__email"
-                                name="email"
+                                id="log__userName"
+                                name="userName"
                                 size="large"
                                 placeholder="Логин"
                                 prefix={<UserOutlined />}
-                                value={values.username}
+                                value={values.userName}
                                 onChange={handleChange}
                                 onBlur={handleBlur}
                                 // autoFocus={true}

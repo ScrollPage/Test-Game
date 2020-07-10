@@ -73,6 +73,7 @@ export const Reg = () => {
         initialValues: {
             email: '',
             firstName: '',
+            userName: '',
             password: '',
             confirmPassword: ''
         },
