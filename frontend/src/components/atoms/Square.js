@@ -3,7 +3,7 @@ import styled from 'styled-components';
 
 const StyledSquare = styled.div`
     border: 1px solid #000;
-    height: 200px;
+    height: 100px;
     width: 33%;
     display: flex;
     justify-content: center;
@@ -11,7 +11,7 @@ const StyledSquare = styled.div`
     font-size: 4rem;
 `;
 
-export const Square = ({value, onClick}) => {
+export const Square = ({value = null, onClick}) => {
     return (
         <StyledSquare onClick={() => onClick()}>
             {value}
