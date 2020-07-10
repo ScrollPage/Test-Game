@@ -24,10 +24,13 @@ export const AuthState = ({ children }) => {
     const [state, dispatch] = useReducer(AuthReducer, initialState)
 
     const authLogin = async (userName, password) => {
-        const data = {
-            username: userName, password
+        const data = { username: userName, password };
+        const options = {
+            method: 'POST',
+            url: `${localhost}/account/api/login`,
+            data: qs.stringify(data)
         };
-        await axios.post(`${localhost}/account/api/login`, qs.stringify(data))
+        await axios(options)
             .then((response) => {
                 store.set('token', response.data.token)
                 store.set('userName', userName)
@@ -45,10 +48,13 @@ export const AuthState = ({ children }) => {
     }
 
     const authRegister = async (email, firstName, userName, password) => {
-        const data = {
-            email: email, first_name: firstName, username: userName, password: password
+        const data = { email: email, first_name: firstName, username: userName, password: password };
+        const options = {
+            method: 'POST',
+            url: `${localhost}/account/api/register`,
+            data: qs.stringify(data)
         };
-        await axios.post(`${localhost}/account/api/register`, qs.stringify(data))
+        await axios(options)
             .then((response) => {
                 show('На ваш E-mail пришло письмо с подтверждением!', 'success')
             })
