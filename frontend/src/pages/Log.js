@@ -1,5 +1,5 @@
 import React, { useContext } from 'react'
-import { MailOutlined, LockOutlined } from '@ant-design/icons'
+import { UserOutlined, LockOutlined } from '@ant-design/icons'
 import { Link } from 'react-router-dom'
 import { useFormik } from 'formik'
 import * as Yup from 'yup'
@@ -36,8 +36,8 @@ const StyledLog = styled.div`
 
 const validationSchema = Yup.object().shape({
     email: Yup.string()
-        .email('Некорректный E-mail')
-        .required('Введите E-mail'),
+        // .email('Некорректный E-mail')
+        .required('Введите логин'),
     password: Yup.string()
         .matches(
             '^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.{8,})',
@@ -98,8 +98,8 @@ export const Log = () => {
                                 id="log__email"
                                 name="email"
                                 size="large"
-                                placeholder="E-mail"
-                                prefix={<MailOutlined />}
+                                placeholder="Логин"
+                                prefix={<UserOutlined />}
                                 value={values.username}
                                 onChange={handleChange}
                                 onBlur={handleBlur}

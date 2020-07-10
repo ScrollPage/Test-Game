@@ -1,23 +1,33 @@
-import React, { useContext, useEffect } from 'react'
-import { AlertContext } from '../../context/alert/AlertContext'
-import { motion } from 'framer-motion'
+import React, { useContext, useEffect } from 'react';
+import { AlertContext } from '../../context/alert/AlertContext';
+import { motion } from 'framer-motion';
 import { Alert } from 'antd';
+import styled from 'styled-components';
+
+const StyledAlert = styled(motion.div)`
+    position: fixed;
+    bottom: 0px;
+    left: 5px;
+    z-index: 100;
+    display: flex;
+    justify-content: center;
+`;
 
 export const Alert = () => {
 
-    const { alert, hide } = useContext(AlertContext)
+    const { alert, hide } = useContext(AlertContext);
 
     useEffect(() => {
         setTimeout(() => {
             hide()
-        }, 2000)
+        }, 2000);
         //eslint-disable-next-line
-    }, [alert])
+    }, [alert]);
 
-    if (!alert) return null
+    if (!alert) return null;
 
     return (
-        <motion.div 
+        <StyledAlert 
             initial={{opacity: 0}}
             animate={{opacity: 1}}
             exit={{opacity: 0}}
@@ -29,6 +39,6 @@ export const Alert = () => {
                 closable
                 onClose={hide}
             />
-        </motion.div>
-    )
+        </StyledAlert>
+    );
 }
