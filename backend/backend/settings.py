@@ -25,7 +25,7 @@ SECRET_KEY = 'k@5v0r89*ju7!_#cpcd_u_&w081+-az#+%oj+@bi&h%!s-puh&'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -47,6 +47,7 @@ INSTALLED_APPS = [
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -132,8 +133,8 @@ EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_HOST_USER = 'reqww00@gmail.com'
 EMAIL_PORT = 587
 EMAIL_USE_TSL = True
-EMAIL_HOST_PASSWORD = 'CFHFYXF228hec:'
+EMAIL_HOST_PASSWORD = 'CFHFYXF228hec;'
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 
-CORS_ALLOW_CREDENTIALS = True
+#CORS_ALLOW_CREDENTIALS = True
 CORS_ORIGIN_ALLOW_ALL = True
