@@ -67,7 +67,7 @@ export const Log = () => {
         },
         validationSchema,
         onSubmit: (values, { setSubmitting, resetForm }) => {
-            authLogin(values.email, values.password)
+            authLogin(values.userName, values.password)
             setSubmitting(true)
             setTimeout(() => {
                 resetForm()
