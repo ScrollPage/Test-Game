@@ -38,7 +38,7 @@ export const AuthState = ({ children }) => {
                 store.remove('basket')
 
                 authSuccess(response.data.token)
-                fetchAccount()
+                // fetchAccount()
                 
                 show('Вы успешно вошли!', 'success')
                 console.log(response.data)
