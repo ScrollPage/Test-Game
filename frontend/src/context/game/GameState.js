@@ -10,7 +10,7 @@ import { GameContext } from './GameContext'
 export const GameState = ({ children }) => {
 
     // const initialState = {
-    //     loading: false,
+        // squares:  
     // }
 
     // const [state, dispatch] = useReducer(GameReducer, initialState)

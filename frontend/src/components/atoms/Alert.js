@@ -18,7 +18,6 @@ export const Alert = () => {
 
     return (
         <motion.div 
-            className="alert-wrapper"
             initial={{opacity: 0}}
             animate={{opacity: 1}}
             exit={{opacity: 0}}

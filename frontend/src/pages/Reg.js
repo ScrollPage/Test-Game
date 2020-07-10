@@ -1,5 +1,5 @@
 import React, { useContext } from 'react'
-import { UserOutlined, LockOutlined, MailOutlined } from '@ant-design/icons'
+import { UserOutlined, LockOutlined, MailOutlined, TeamOutlined } from '@ant-design/icons'
 import { Link } from 'react-router-dom'
 import { useFormik } from 'formik'
 import * as Yup from 'yup'
@@ -142,7 +142,7 @@ export const Reg = () => {
                                 id="reg__userName"
                                 name="userName"
                                 placeholder="Логин"
-                                prefix={<UserOutlined />}
+                                prefix={<TeamOutlined />}
                                 value={values.userName}
                                 onChange={handleChange}
                                 onBlur={handleBlur}
