@@ -32,22 +32,23 @@ const StyledSearch = styled.div`
 
 export const Game = () => {
 
-    const { isStart, loading, Search, desk } = useContext(GameContext);
+    const { isStart, loading, searchPlayer, desk, addDesk } = useContext(GameContext);
 
     useEffect(() => {
         store.set('isStart', isStart);
         store.set('desk', desk);
     },[isStart, desk]);
 
-    const renderSquare = (i) => {
-        return <Square value={i} key={`${i}__key`} />
+    const renderSquare = (index) => {
+        return <Square value={desk[index]} key={`${index}__key`} onClick={() => addDesk(index)}/>
     };
 
     return (
         <Container>
+            {console.log(desk)}
             {!isStart
                 ? <StyledSearch>
-                    <Button onClick={() => Search()}>Начать поиск соперника</Button>    
+                    <Button onClick={() => searchPlayer()}>Начать поиск соперника</Button>    
                 </StyledSearch>
                 : loading ? 'Загрузка...'
                     : <StyledGame>

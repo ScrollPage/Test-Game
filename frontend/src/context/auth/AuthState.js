@@ -87,12 +87,14 @@ export const AuthState = ({ children }) => {
 
     const logout = () => {
         show('Вы успешно вышли!', 'success');
-        store.remove('token')
-        store.remove('userName')
+        store.remove('token');
+        store.remove('userName');
+        store.remove('desk');
+        store.remove('isStart');
         dispatch({
             type: AUTH_LOGOUT
-        })
-    }
+        });
+    };
 
     // const fetchAccount = async () => {
     //     try {

@@ -9,6 +9,9 @@ const StyledSquare = styled.div`
     justify-content: center;
     align-items: center;
     font-size: 4rem;
+    &:hover {
+        cursor: pointer;
+    }
 `;
 
 export const Square = ({value = null, onClick}) => {

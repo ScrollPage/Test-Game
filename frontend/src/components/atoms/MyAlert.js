@@ -20,7 +20,7 @@ export const MyAlert = () => {
     useEffect(() => {
         setTimeout(() => {
             hide()
-        }, 3000);
+        }, 4000);
         //eslint-disable-next-line
     }, [alert]);
 

@@ -1,7 +1,9 @@
-export const SET_LOADING = 'SET_LOADING' 
-export const AUTH_SUCCESS = 'AUTH_SUCCESS'
-export const AUTH_LOGOUT = 'AUTH_LOGOUT'
-export const FETCH_ACCOUNT_SUCCESS = 'FETCH_ACCOUNT_SUCCESS'
-export const HIDE_ALERT = 'HIDE_ALERT'
-export const SHOW_ALERT = 'SHOW_ALERT'
-export const SEARCH_SUCCESS = 'SEARCH_SUCCESS'
+export const SET_LOADING = 'SET_LOADING';
+export const AUTH_SUCCESS = 'AUTH_SUCCESS';
+export const AUTH_LOGOUT = 'AUTH_LOGOUT';
+export const FETCH_ACCOUNT_SUCCESS = 'FETCH_ACCOUNT_SUCCESS';
+export const HIDE_ALERT = 'HIDE_ALERT';
+export const SHOW_ALERT = 'SHOW_ALERT';
+export const SEARCH_SUCCESS = 'SEARCH_SUCCESS';
+export const ADD_DESK = 'ADD_DESK';
+export const GAME_END = 'GAME_END';
