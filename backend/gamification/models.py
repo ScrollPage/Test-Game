@@ -3,5 +3,6 @@ from tictactoe.models import TicTacSession
 from search.models import Search
 
 class GameItem(models.Model):
-    tictac = models.ManyToManyField(TicTacSession)
-    search = models.OneToOneField(Search, on_delete = models.CASCADE)
+    playing = models.CharField(max_length = 20, blank = True)
+    tictac = models.OneToOneField(TicTacSession, on_delete = models.CASCADE, null = True)
+    search = models.OneToOneField(Search, on_delete = models.CASCADE, null = True)
