@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { NavLink } from 'react-router-dom';
 import { Container } from '../styled/Container';
 import styled from 'styled-components';
+import { AuthContext } from '../context/auth/AuthContext';
 
 const StyledHeader = styled.div`
     display: flex;
@@ -18,12 +19,19 @@ const StyledHeader = styled.div`
 `;
 
 export const Header = () => {
+
+    const { token, logout } = useContext(AuthContext);
+    const isAuthenticated = !!token;
+    
     return (
         <Container>
             <StyledHeader>
                 <NavLink to="/" className="nav-link">Главная</NavLink>
                 <NavLink to="/game" className="nav-link">Играть</NavLink>
-                <NavLink to="/log" className="nav-link">Вход</NavLink>
+                {isAuthenticated 
+                ? <NavLink to="/" className="nav-link" onClick={() => logout()}>Выйти</NavLink>
+                : <NavLink to="/log" className="nav-link">Войти</NavLink> }
+                
             </StyledHeader>
         </Container>
     );

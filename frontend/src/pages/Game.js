@@ -1,9 +1,10 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { Container } from '../styled/Container';
 import styled from 'styled-components';
 import { Square } from '../components/atoms/Square';
 import { Button } from 'antd';
 import { GameContext } from '../context/game/GameContext';
+import store from 'store';
 
 const StyledGame = styled.div`
     padding-top: 20px;
@@ -29,13 +30,18 @@ const StyledSearch = styled.div`
     padding-top: 20px;
 `;
 
-const renderSquare = (i) => {
-    return <Square value={i} key={`${i}__key`} />
-}
-
 export const Game = () => {
 
-    const { isStart, loading, Search } = useContext(GameContext);
+    const { isStart, loading, Search, desk } = useContext(GameContext);
+
+    useEffect(() => {
+        store.set('isStart', isStart);
+        store.set('desk', desk);
+    },[isStart, desk]);
+
+    const renderSquare = (i) => {
+        return <Square value={i} key={`${i}__key`} />
+    };
 
     return (
         <Container>

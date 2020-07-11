@@ -66,35 +66,29 @@ export const AuthState = ({ children }) => {
 
     const authSuccess = (token) => dispatch({ type: AUTH_SUCCESS, payload: token })
 
-    const autoLogout = (time) => setTimeout(() => { logout() }, time * 1000)
+    // const autoLogout = (time) => setTimeout(() => { logout() }, time * 1000)
 
-    const onLogout = () => { show('Вы успешно вышли!', 'success'); logout(); }
+    // const onLogout = () => { show('Вы успешно вышли!', 'success'); logout(); }
 
-    const autoLogin = () => {
-        const token = store.get('token')
-        if (!token) {
-            logout()
-        } else {
-            const expirationDate = new Date(store.get('expirationDate'))
-            if (expirationDate <= new Date()) {
-                logout()
-            } else {
-                authSuccess(token)
-                autoLogout((expirationDate.getTime() - new Date().getTime()) / 1000)
-            }
-        }
-    }
+    // const autoLogin = () => {
+    //     const token = store.get('token')
+    //     if (!token) {
+    //         logout()
+    //     } else {
+    //         const expirationDate = new Date(store.get('expirationDate'))
+    //         if (expirationDate <= new Date()) {
+    //             logout()
+    //         } else {
+    //             authSuccess(token)
+    //             autoLogout((expirationDate.getTime() - new Date().getTime()) / 1000)
+    //         }
+    //     }
+    // }
 
     const logout = () => {
+        show('Вы успешно вышли!', 'success');
         store.remove('token')
-        store.remove('expirationDate')
-        store.remove('email')
-        store.remove('count')
-        store.remove('price')
-        store.remove('basket')
-        store.remove('search')
-        store.remove('ordering')
-        store.remove('isAdmin')
+        store.remove('userName')
         dispatch({
             type: AUTH_LOGOUT
         })
@@ -152,21 +146,21 @@ export const AuthState = ({ children }) => {
 
     // const setLoading = () => dispatch({type: SET_LOADING})
 
-    const { token, firstName, lastName, number, email } = state
+    const { token, userName } = state
 
     return (
         <AuthContext.Provider value={{
-            onLogout,
-            autoLogin,
+            // onLogout,
+            // autoLogin,
             authLogin,
             authRegister,
             authSuccess,
-            autoLogout,
+            // autoLogout,
             logout,
             // fetchAccount,
             // changeAccount,
             // changePassword,
-            token, firstName, lastName, number, email
+            token, userName
         }}>
             {children}
         </AuthContext.Provider>

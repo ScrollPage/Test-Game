@@ -13,8 +13,8 @@ import {localhost} from '../../config'
 export const GameState = ({ children }) => {
 
     const initialState = {
-        desk: store.get('desk') === undefined ? Array(9).fill(null) : store.get(),
-        isStart: false,
+        desk: store.get('desk') === undefined ? Array(9).fill(null) : store.get('desk'),
+        isStart: store.get('isStart') === undefined ? false : store.get('isStart'),
         loading: false,
         vsPlayer: null,
         xory: null
